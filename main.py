@@ -1,8 +1,20 @@
+from fastapi.middleware.cors import CORSMiddleware #para permitir el acceso a la API desde cualquier origen
+
 from fastapi import FastAPI
-import uvicorn
 from fastapi.responses import HTMLResponse
+import uvicorn
+
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite cualquier origen
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, WS, etc.)
+    allow_headers=["*"],  # Permitir todos los encabezados
+)
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
