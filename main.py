@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware #para permitir el acceso a la
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import uvicorn
+import os #para interactuar con el sistema operativo
 
 
 
@@ -124,6 +125,6 @@ async def root():
     """
     return html_content
 
-    if __name__ == "__main__":
-        port = int(os.environ.get("PORT", 8000))
-        uvicorn.run("main:app", host="0.0.0.0", port=port )
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
